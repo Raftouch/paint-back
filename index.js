@@ -28,8 +28,8 @@ const connectionHandler = (ws, msg) => {
 
 const broadcastConnection = (ws, msg) => {
   aWss.clients.forEach((client) => {
-    if (client.id === msg.id) {
-      client.send(`User with username ${msg.username} is connected`);
+    if (client.id === ws.id) {
+      client.send(`User ${msg.username} joined room ${ws.id}`);
     }
   });
 };
