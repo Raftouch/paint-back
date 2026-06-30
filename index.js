@@ -29,7 +29,7 @@ const connectionHandler = (ws, msg) => {
 const broadcastConnection = (ws, msg) => {
   aWss.clients.forEach((client) => {
     if (client.id === msg.id) {
-      client.send(`User with ${msg.username} is connected`);
+      client.send(`User with username ${msg.username} is connected`);
     }
   });
 };
