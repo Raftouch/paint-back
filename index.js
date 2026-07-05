@@ -8,7 +8,14 @@ const port = process.env.PORT;
 
 app.ws("/", (ws, req) => {
   console.log("All works");
-  ws.send("Connection successful");
+
+  ws.send(
+    JSON.stringify({
+      method: "connection",
+      message: "Connection successful",
+    }),
+  );
+
   ws.on("message", (msg) => {
     msg = JSON.parse(msg);
     switch (msg.method) {
