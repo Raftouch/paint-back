@@ -66,4 +66,17 @@ app.post("/image", (req, res) => {
   }
 });
 
+app.get("/image", (req, res) => {
+  try {
+    const file = fs.readFileSync(
+      path.resolve(__dirname, "files", `${req.query.id}.png`),
+    );
+    const imgData = "data:image/png;base64," + file.toString("base64");
+    return res.json({ img: imgData });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json("Something went wrong");
+  }
+});
+
 app.listen(port, () => console.log(`App listening on port ${port}`));
